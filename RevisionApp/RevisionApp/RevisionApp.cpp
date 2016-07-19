@@ -30,27 +30,41 @@ void Account::withdraw(int amt) { balance -= amt; }
 
 class Bank {
 
+private:
 	vector<Account> accounts;
-	int i;
 
-	string print_accounts(vector<Account>)
+public:
+	void add(Account &act) {
+		accounts.push_back(act);
+	}
+	
+	void print_accounts() const
 	{
-		for (int i = 0; i<accounts.size; i++);
-		cout << i << " " << endl;
+		for (int i = 0; i < accounts.size(); i++)
+		{
+			cout << accounts[i].get_name() << "has £" << accounts[i].get_balance() << endl;
+		}
 	}
 
 };
 
-
-
 int main()
 {
-	//Account my_act("Lucas");
-	//cout << my_act.get_name() << endl;
+	Account my_act("Lucas");
+	my_act.deposit(150);
+	cout << my_act.get_name() << "" << my_act.get_balance() << endl;
 
-	Bank my_bank;
+	Account christos_act("Christos");
+	christos_act.deposit(20);
+	cout << christos_act.get_name() << "" << christos_act.get_balance() << endl;
 
-	print_accounts(vector<Account>);
+	Bank bank;
+	my_act.withdraw(25);
+	christos_act.deposit(50);
+	bank.add(my_act);
+	bank.add(christos_act);
+	
+	bank.print_accounts();
 
     return 0;
 };
